@@ -2,11 +2,6 @@ package medium
 
 import "sort"
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
 func sortList(head *ListNode) *ListNode {
 	if head == nil {
 		return nil
