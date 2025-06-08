@@ -1,4 +1,4 @@
-package problems
+package hard
 
 func twoSum(nums []int, target int) []int {
 	hashTable := map[int]int{}

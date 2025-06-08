@@ -1,4 +1,4 @@
-package problems
+package hard
 
 type BookMyShow struct {
 	rows       int

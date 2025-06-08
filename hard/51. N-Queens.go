@@ -1,4 +1,4 @@
-package problems
+package hard
 
 func solveNQueens(n int) [][]string {
 	ans := [][]string{}

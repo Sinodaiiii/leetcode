@@ -1,4 +1,4 @@
-package problems
+package hard
 
 const maxLevel = 32
 const pFactor = 0.25

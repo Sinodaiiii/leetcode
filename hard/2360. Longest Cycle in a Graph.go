@@ -1,4 +1,4 @@
-package problems
+package hard
 
 func longestCycle(edges []int) int {
 	ans, t := -1, 1

@@ -1,4 +1,4 @@
-package problems
+package hard
 
 func numDistinct(s string, t string) int {
 	dp := make([]int, len(s))

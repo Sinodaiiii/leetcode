@@ -1,4 +1,4 @@
-package problems
+package hard
 
 func largestRectangleArea(heights []int) int {
 	cal := make([]int, len(heights))

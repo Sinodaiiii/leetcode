@@ -1,4 +1,4 @@
-package problems
+package hard
 
 func longestValidParentheses(s string) int {
 	if len(s) <= 1 {
