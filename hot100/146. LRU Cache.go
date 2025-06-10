@@ -1,6 +1,7 @@
 package hot100
 
-// 在一个等号两侧同时操作多个指针实现操作增加/删除节点时，要考虑原地操作的问题，否则可能重复赋值造成问题
+// 在一个等号两侧同时操作多个指针实现操作增加/删除节点时，要考虑原地操作的问题（删除添加至同一个位置），否则可能重复赋值造成问题
+//
 // When performing operations on multiple pointers
 //on both sides of an equal sign to add/delete nodes,
 //the issue of in-place operations must be considered;
