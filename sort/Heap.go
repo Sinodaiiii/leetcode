@@ -93,3 +93,42 @@ func main() {
 	fmt.Println("弹出元素:", heap.Pop())    // 输出: 10
 	fmt.Println("剩余堆顶:", heap.GetMax()) // 输出: 5
 }
+
+// 迭代的push后向上、向下调整
+// 大顶堆向上调整（用于添加元素到堆尾后）
+func maxHeapUp(maxHeap []int, index int) {
+	for index > 0 {
+		parent := (index - 1) / 2
+		if maxHeap[parent] >= maxHeap[index] {
+			break // 父节点更大，无需调整
+		}
+		// 交换父节点和当前节点
+		maxHeap[parent], maxHeap[index] = maxHeap[index], maxHeap[parent]
+		index = parent
+	}
+}
+
+// 大顶堆向下调整（用于堆顶元素变化后）
+func maxHeapDown(maxHeap []int, index int) {
+	length := len(maxHeap)
+	for {
+		left := 2*index + 1
+		right := 2*index + 2
+		largest := index
+
+		// 找到左、右子节点中更大的那个
+		if left < length && maxHeap[left] > maxHeap[largest] {
+			largest = left
+		}
+		if right < length && maxHeap[right] > maxHeap[largest] {
+			largest = right
+		}
+
+		if largest == index {
+			break // 无需调整
+		}
+		// 交换当前节点和最大子节点
+		maxHeap[index], maxHeap[largest] = maxHeap[largest], maxHeap[index]
+		index = largest
+	}
+}
