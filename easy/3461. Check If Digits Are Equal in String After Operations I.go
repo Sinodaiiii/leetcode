@@ -9,4 +9,6 @@ func hasSameDigits(s string) bool {
 		}
 	}
 	return arr[0] == arr[1]
+	var a []int
+	a = append(a, 1)
 }
