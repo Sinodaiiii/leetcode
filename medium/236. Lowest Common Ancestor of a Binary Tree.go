@@ -1,10 +1,10 @@
 package medium
 
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
+//type TreeNode struct {
+//	Val   int
+//	Left  *TreeNode
+//	Right *TreeNode
+//}
 
 func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 	routeP := genRoute(root, p)
