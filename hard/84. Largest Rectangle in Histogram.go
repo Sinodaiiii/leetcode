@@ -25,3 +25,27 @@ func largestRectangleArea(heights []int) int {
 	}
 	return ans
 }
+
+func largestRectangleArea2(heights []int) int {
+	stack := []int{-1}
+	n := len(heights)
+	l := make([]int, n)
+	l[0] = -1
+	for i := 0; i < len(heights); i++ {
+		for len(stack) > 1 && heights[stack[len(stack)-1]] >= heights[i] {
+			stack = stack[:len(stack)-1]
+		}
+		l[i] = stack[len(stack)-1]
+		stack = append(stack, i)
+	}
+	stack = []int{n}
+	ans := 0
+	for i := n - 1; i >= 0; i-- {
+		for len(stack) > 1 && heights[stack[len(stack)-1]] >= heights[i] {
+			stack = stack[:len(stack)-1]
+		}
+		ans = max(ans, (stack[len(stack)-1]-l[i]-1)*heights[i])
+		stack = append(stack, i)
+	}
+	return ans
+}

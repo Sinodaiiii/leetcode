@@ -27,3 +27,22 @@ func sortColors(nums []int) {
 		}
 	}
 }
+
+func sortColors2(nums []int) {
+	n := len(nums)
+	r, b := 0, n-1
+	curr := 0
+	for curr <= b {
+		switch nums[curr] {
+		case 0:
+			nums[r], nums[curr] = nums[curr], nums[r]
+			r += 1
+			curr += 1
+		case 2:
+			nums[b], nums[curr] = nums[curr], nums[b]
+			b -= 1
+		default:
+			curr += 1
+		}
+	}
+}
