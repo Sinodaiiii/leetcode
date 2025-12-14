@@ -1,5 +1,7 @@
 package medium
 
+import "math"
+
 func findUnsortedSubarray(nums []int) int {
 	n := len(nums)
 	if n == 1 {
@@ -49,4 +51,24 @@ func findUnsortedSubarray(nums []int) int {
 		}
 	}
 	return ri - li + 1
+}
+
+func findUnsortedSubarray2(nums []int) int {
+	n := len(nums)
+	l, r := n, n-1
+	target := math.MaxInt32
+	for i := n - 1; i >= 0; i-- {
+		if nums[i] > target {
+			l = i
+		}
+		target = min(target, nums[i])
+	}
+	target = math.MinInt32
+	for i := 0; i < n; i++ {
+		if nums[i] < target {
+			r = i
+		}
+		target = max(target, nums[i])
+	}
+	return r - l + 1
 }
