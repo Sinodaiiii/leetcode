@@ -35,3 +35,14 @@ func uniquePaths(m int, n int) int {
 	}
 	return matrix[m-1][n-1]
 }
+
+func uniquePaths2(m int, n int) int {
+	total := m + n - 2
+	target := min(m, n) - 1
+	mul := 1
+	for i := 0; i < target; i++ {
+		mul *= total - i
+		mul /= i + 1
+	}
+	return mul
+}

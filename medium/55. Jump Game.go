@@ -14,6 +14,17 @@ func canJump(nums []int) bool {
 	return dp[0]
 }
 
+func canJump2(nums []int) bool {
+	r := 0
+	for curr, num := range nums {
+		if curr > r {
+			return false
+		}
+		r = max(r, curr+num)
+	}
+	return true
+}
+
 //func canJump(nums []int) bool {
 //	n := len(nums)
 //	if n == 1 {

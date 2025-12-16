@@ -9,3 +9,15 @@ func maxSubArray(nums []int) int {
 	}
 	return ans
 }
+
+func maxSubArray2(nums []int) int {
+	sum := 0
+	m := 0
+	ans := nums[0]
+	for _, num := range nums {
+		sum += num
+		ans = max(ans, sum-m)
+		m = min(m, sum)
+	}
+	return ans
+}
