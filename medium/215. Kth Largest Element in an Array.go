@@ -31,6 +31,35 @@ func findKthLargest(nums []int, k int) int {
 	return minReap[1]
 }
 
+func findKthLargest2(nums []int, k int) int {
+	// fmt.Println(nums, k)
+	// if k == 1 {
+	//     return nums[0]
+	// }
+	// fmt.Println(nums, k)
+	if len(nums) == 1 {
+		return nums[0]
+	}
+	pivot := nums[0]
+	l, r := -1, len(nums)
+	for l < r {
+		for l++; nums[l] > pivot; l++ {
+		}
+		for r--; nums[r] < pivot; r-- {
+		}
+		if l < r {
+			nums[l], nums[r] = nums[r], nums[l]
+		}
+	}
+	// fmt.Println(nums, l, r)
+
+	if r >= k-1 {
+		return findKthLargest(nums[:r+1], k)
+	} else {
+		return findKthLargest(nums[r+1:], k-r-1)
+	}
+}
+
 //func findKthLargest(nums []int, k int) int {
 //	heapSize := len(nums)
 //	buildMaxHeap(nums, heapSize)

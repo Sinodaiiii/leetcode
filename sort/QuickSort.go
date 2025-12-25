@@ -28,6 +28,8 @@ func quickSort(arr []int, low, high int) {
 }
 
 func HoareQuickSort(nums []int) []int {
+	// 能够较均匀地划分串，使每次分割趋向中间位置
+	// 但是无法保证每次排序后 Pivot 出现在正确的位置
 	var sortA func(l, r int)
 	sortA = func(l, r int) {
 		fmt.Println("sort: ", l, r, nums)

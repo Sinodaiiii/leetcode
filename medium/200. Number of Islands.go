@@ -63,6 +63,53 @@ func numIslands(grid [][]byte) int {
 	return ans
 }
 
+func numIslands2(grid [][]byte) int {
+	ans := 0
+	m, n := len(grid), len(grid[0])
+	father := make([][]int, m)
+	for i := 0; i < m; i++ {
+		father[i] = make([]int, n)
+		for j := 0; j < n; j++ {
+			if grid[i][j] == '1' {
+				father[i][j] = i*1000 + j
+				ans += 1
+			}
+		}
+	}
+	var find func(i, j int) int
+	find = func(i, j int) int {
+		if father[i][j] != i*1000+j {
+			father[i][j] = find(father[i][j]/1000, father[i][j]%1000)
+		}
+		return father[i][j]
+	}
+	var union func(i, j, x, y int)
+	union = func(i, j, x, y int) {
+		fij := find(i, j)
+		fxy := find(x, y)
+		if fij != fxy {
+			// fmt.Println(i, j, fij, x, y, fxy)
+			ans -= 1
+			father[fij/1000][fij%1000] = fxy
+		}
+	}
+	directions := [][]int{{0, 1}, {1, 0}}
+	for i := 0; i < m; i++ {
+		for j := 0; j < n; j++ {
+			if grid[i][j] == '0' {
+				continue
+			}
+			for _, direction := range directions {
+				ix, jy := i+direction[0], j+direction[1]
+				if ix >= 0 && ix < m && jy >= 0 && jy < n && grid[ix][jy] == '1' {
+					union(i, j, ix, jy)
+				}
+			}
+		}
+	}
+	return ans
+}
+
 //func numIslands(grid [][]byte) int {
 //	m, n := len(grid), len(grid[0])
 //	islands := make([][]int, m)
