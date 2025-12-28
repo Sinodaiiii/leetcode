@@ -54,3 +54,21 @@ func longestValidParentheses2(s string) int {
 	}
 	return ans
 }
+
+func longestValidParentheses3(s string) int {
+	stack := []int{-1}
+	ans := 0
+	for i, b := range s {
+		if b == '(' {
+			stack = append(stack, i)
+		} else {
+			stack = stack[:len(stack)-1]
+			if len(stack) == 0 {
+				stack = append(stack, i)
+			} else {
+				ans = max(ans, i-stack[len(stack)-1])
+			}
+		}
+	}
+	return ans
+}
