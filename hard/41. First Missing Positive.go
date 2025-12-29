@@ -20,3 +20,29 @@ func firstMissingPositive(nums []int) int {
 	}
 	return n
 }
+
+func firstMissingPositive251229(nums []int) int {
+	nums = append(nums, 0, 0)
+	n := len(nums)
+	for i, num := range nums {
+		if num <= 0 {
+			nums[i] -= n
+		} else {
+			nums[i] = -nums[i]
+		}
+	}
+	for _, num := range nums {
+		if num < 0 {
+			num = -num
+		}
+		if num < n && nums[num] < 0 {
+			nums[num] = -nums[num]
+		}
+	}
+	for i := 1; i < n; i++ {
+		if nums[i] <= 0 {
+			return i
+		}
+	}
+	return 0
+}
