@@ -18,3 +18,17 @@ func subsets(nums []int) [][]int {
 	}
 	return ans
 }
+
+func subsets251230(nums []int) [][]int {
+	ans := [][]int{[]int{}}
+	sort.Ints(nums)
+	for _, num := range nums {
+		curr := len(ans)
+		for i := 0; i < curr; i++ {
+			tmpNum := make([]int, len(ans[i]))
+			copy(tmpNum, ans[i])
+			ans = append(ans, append(tmpNum, num))
+		}
+	}
+	return ans
+}

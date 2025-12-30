@@ -20,3 +20,20 @@ func reverseWords(s string) string {
 	}
 	return ret
 }
+
+func reverseWords251230(s string) string {
+	ans := ""
+	pre := len(s)
+	for i := len(s) - 1; i >= 0; i-- {
+		if s[i] == ' ' {
+			if pre != i+1 {
+				ans += " " + s[i+1:pre]
+			}
+			pre = i
+		}
+	}
+	if s[0] != ' ' {
+		ans += " " + s[:pre]
+	}
+	return ans[1:]
+}
