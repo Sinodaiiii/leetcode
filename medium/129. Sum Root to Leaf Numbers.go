@@ -30,3 +30,26 @@ func sumNumbers(root *TreeNode) int {
 	dfs(root)
 	return ans
 }
+
+func sumNumbers251231(root *TreeNode) int {
+	ans := 0
+	curr := 0
+	var dfs func(node *TreeNode)
+	dfs = func(node *TreeNode) {
+		curr = curr*10 + node.Val
+		if node.Left == nil && node.Right == nil {
+			ans += curr
+		} else {
+			if node.Left != nil {
+				dfs(node.Left)
+			}
+			if node.Right != nil {
+				dfs(node.Right)
+			}
+		}
+		curr = curr / 10
+	}
+
+	dfs(root)
+	return ans
+}
