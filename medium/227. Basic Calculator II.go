@@ -46,3 +46,50 @@ func calculate(s string) int {
 	}
 	return ans
 }
+
+func calculate260109(s string) int {
+	preResult := 0
+	flag := 1
+	currResult := 0
+	currFlag := 0 // 2:*  3:/
+	currNum := 0
+	for _, c := range s {
+		if c >= '0' && c <= '9' {
+			currNum = currNum*10 + int(c-'0')
+		} else if c == ' ' {
+			continue
+		} else {
+			if currFlag == 2 {
+				currResult *= currNum
+			} else if currFlag == 3 {
+				currResult /= currNum
+			} else {
+				currResult = currNum
+			}
+			if c == '*' || c == '/' {
+				if c == '*' {
+					currFlag = 2
+				} else if c == '/' {
+					currFlag = 3
+				}
+			} else if c == '+' || c == '-' {
+				preResult += flag * currResult
+				if c == '+' {
+					flag = 1
+				} else if c == '-' {
+					flag = -1
+				}
+				currFlag = 0
+			}
+			currNum = 0
+		}
+	}
+	if currFlag == 2 {
+		currResult *= currNum
+	} else if currFlag == 3 {
+		currResult /= currNum
+	} else {
+		currResult = currNum
+	}
+	return preResult + flag*currResult
+}
