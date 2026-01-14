@@ -26,3 +26,43 @@ func isInterleave(s1 string, s2 string, s3 string) bool {
 	}
 	return check(0, 0, 0)
 }
+
+func isInterleave260114(s1 string, s2 string, s3 string) bool {
+	if len(s3) != len(s1)+len(s2) {
+		return false
+	}
+	if s1 == "" || s2 == "" {
+		return s3 == s1+s2
+	}
+	n1, n2, n3 := len(s1), len(s2), len(s3)
+	dp := make([][]bool, n2+1)
+	for i := 0; i <= n2; i++ {
+		dp[i] = make([]bool, n1+1)
+	}
+	dp[0][0] = true
+	for i := 1; i <= n3; i++ {
+		for j := n2; j > 0; j-- {
+			for k := n1; k > 0; k-- {
+				tmp := false
+				if s3[i-1] == s1[k-1] {
+					tmp = tmp || dp[j][k-1]
+				}
+				if s3[i-1] == s2[j-1] {
+					tmp = tmp || dp[j-1][k]
+				}
+				dp[j][k] = tmp
+			}
+			if s3[i-1] == s2[j-1] {
+				dp[j][0] = dp[j-1][0]
+			}
+		}
+		for k := n1; k > 0; k-- {
+			if s3[i-1] == s1[k-1] {
+				dp[0][k] = dp[0][k-1]
+			}
+		}
+		dp[0][0] = false
+		// fmt.Println(dp)
+	}
+	return dp[n2][n1]
+}
