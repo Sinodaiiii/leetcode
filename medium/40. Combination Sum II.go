@@ -69,3 +69,41 @@ func combinationSum2(candidates []int, target int) [][]int {
 	}
 	return ret
 }
+
+func combinationSum2260115(candidates []int, target int) [][]int {
+	sort.Ints(candidates)
+	n := len(candidates)
+	ans := [][]int{}
+	curr := make([]int, 0, n)
+	currSum := 0
+	var dfs func(index int)
+	dfs = func(index int) {
+		// fmt.Println(curr, currSum)
+		if currSum == target {
+			tmp := make([]int, len(curr))
+			copy(tmp, curr)
+			ans = append(ans, tmp)
+			return
+		}
+		if index >= n {
+			return
+		}
+		for i := index; i < n; i++ {
+			if i > index && candidates[i] == candidates[i-1] {
+				continue
+			}
+			currSum += candidates[i]
+			if currSum > target {
+				currSum -= candidates[i]
+				return
+			}
+			curr = append(curr, candidates[i])
+			dfs(i + 1)
+			curr = curr[:len(curr)-1]
+			currSum -= candidates[i]
+		}
+	}
+
+	dfs(0)
+	return ans
+}
