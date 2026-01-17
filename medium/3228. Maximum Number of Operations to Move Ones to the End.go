@@ -1,4 +1,4 @@
-package main
+package medium
 
 func maxOperations(s string) int {
 	ans := 0
