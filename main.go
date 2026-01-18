@@ -1,40 +1,40 @@
 package main
 
 import (
-	"fmt"
-	"leetcode/ds"
+	"leetcode/goroutine"
 )
 
-type heapSlice []int
-
-func (h heapSlice) Len() int {
-	return len(h)
-}
-
-func (h heapSlice) Less(i, j int) bool {
-	return h[i] < h[j]
-}
-
-func (h heapSlice) Swap(i, j int) {
-	h[i], h[j] = h[j], h[i]
-}
-
-func (h *heapSlice) Pop() interface{} {
-	num := *h
-	ret := num[len(num)-1]
-	*h = num[0 : len(*h)-1]
-	return ret
-}
-
-func (h *heapSlice) Push(i interface{}) {
-	*h = append(*h, i.(int))
-}
+//type heapSlice []int
+//
+//func (h heapSlice) Len() int {
+//	return len(h)
+//}
+//
+//func (h heapSlice) Less(i, j int) bool {
+//	return h[i] < h[j]
+//}
+//
+//func (h heapSlice) Swap(i, j int) {
+//	h[i], h[j] = h[j], h[i]
+//}
+//
+//func (h *heapSlice) Pop() interface{} {
+//	num := *h
+//	ret := num[len(num)-1]
+//	*h = num[0 : len(*h)-1]
+//	return ret
+//}
+//
+//func (h *heapSlice) Push(i interface{}) {
+//	*h = append(*h, i.(int))
+//}
 
 func main() {
-	t := []int{5, 4, 10, 20, 100}
+	goroutine.Print3Thread()
+	//t := []int{5, 4, 10, 20, 100}
 	//ds.QuickSort(t, 0, len(t)-1)
-	ds.HeapSort(t)
-	fmt.Println(t)
+	//ds.HeapSort(t)
+	//fmt.Println(t)
 	//println("hello")
 	//h := heapSlice{5, 4, 3, 2, 1}
 	//heap.Init(&h)

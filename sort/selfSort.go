@@ -1,4 +1,4 @@
-package ds
+package sort
 
 func QuickSort(numbers []int, start, end int) {
 	if start >= end {
