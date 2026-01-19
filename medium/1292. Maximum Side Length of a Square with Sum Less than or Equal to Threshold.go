@@ -1,6 +1,6 @@
 package medium
 
-func maxSideLength(mat [][]int, threshold int) int {
+func maxSideLength260119(mat [][]int, threshold int) int {
 	m, n := len(mat), len(mat[0])
 	for i := 1; i < m; i++ {
 		mat[i][0] += mat[i-1][0]
