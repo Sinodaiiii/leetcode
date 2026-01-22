@@ -39,5 +39,5 @@ func maxProfit260122(prices []int) int {
 		dp[0][1] = max(dp[0][1], dp[0][0]+prices[i])
 		dp[0][0] = max(dp[0][0], -prices[i])
 	}
-	return max(dp[0][1], dp[1][1], 0)
+	return max(max(dp[0][1], dp[1][1]), 0)
 }
