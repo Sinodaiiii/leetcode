@@ -48,3 +48,31 @@ func searchMatrix(matrix [][]int, target int) bool {
 	}
 	return false
 }
+
+func searchMatrix260130(matrix [][]int, target int) bool {
+	l, r := 0, len(matrix)-1
+	row := 0
+	for l <= r {
+		mid := (l + r) / 2
+		if matrix[mid][0] == target {
+			return true
+		} else if matrix[mid][0] < target {
+			row = mid
+			l = mid + 1
+		} else {
+			r = mid - 1
+		}
+	}
+	l, r = 0, len(matrix[0])-1
+	for l <= r {
+		mid := (l + r) / 2
+		if matrix[row][mid] == target {
+			return true
+		} else if matrix[row][mid] < target {
+			l = mid + 1
+		} else {
+			r = mid - 1
+		}
+	}
+	return false
+}
