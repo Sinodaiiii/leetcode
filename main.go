@@ -1,8 +1,6 @@
 package main
 
-import (
-	"leetcode/goroutine"
-)
+import "fmt"
 
 //type heapSlice []int
 //
@@ -30,7 +28,8 @@ import (
 //}
 
 func main() {
-	goroutine.Print3Thread()
+	//goroutine.Print3Thread()
+	fmt.Println((10) % (-3))
 	//t := []int{5, 4, 10, 20, 100}
 	//ds.QuickSort(t, 0, len(t)-1)
 	//ds.HeapSort(t)
