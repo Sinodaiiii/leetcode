@@ -20,3 +20,21 @@ func findDuplicates(nums []int) []int {
 	}
 	return ans
 }
+
+func findDuplicates260206(nums []int) []int {
+	ans := []int{}
+	for i, num := range nums {
+		if num <= 0 {
+			continue
+		}
+		curr := num
+		nums[i] = 0
+		for curr > 0 {
+			if nums[curr-1] < 0 {
+				ans = append(ans, curr)
+			}
+			curr, nums[curr-1] = nums[curr-1], -1
+		}
+	}
+	return ans
+}
