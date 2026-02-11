@@ -42,3 +42,42 @@ func permuteUnique(nums []int) [][]int {
 	backtrack(0, -1)
 	return ans
 }
+
+func permuteUnique260211(nums []int) [][]int {
+	dict := map[int]int{}
+	value := make([]int, 0, 8)
+	left := make([]int, 0, 8)
+	for _, num := range nums {
+		if i, exist := dict[num]; exist {
+			left[i] += 1
+		} else {
+			dict[num] = len(value)
+			value = append(value, num)
+			left = append(left, 1)
+		}
+	}
+	n := len(nums)
+	curr := make([]int, 0, 8)
+	ans := [][]int{}
+	var dfs func()
+	dfs = func() {
+		if len(curr) == n {
+			tmp := make([]int, len(curr))
+			copy(tmp, curr)
+			ans = append(ans, tmp)
+			return
+		}
+		for i, num := range left {
+			if num > 0 {
+				curr = append(curr, value[i])
+				left[i] -= 1
+				dfs()
+				curr = curr[:len(curr)-1]
+				left[i] += 1
+			}
+		}
+	}
+
+	dfs()
+	return ans
+}
