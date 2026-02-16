@@ -22,3 +22,24 @@ func rob198260109(nums []int) int {
 	}
 	return max(pre, curr)
 }
+
+func rob198260216(nums []int) int {
+	if len(nums) == 1 {
+		return nums[0]
+	}
+	if len(nums) >= 3 {
+		nums[2] += nums[0]
+	}
+	for i := 3; i < len(nums); i++ {
+		nums[i] += max(nums[i-2], nums[i-3])
+	}
+	return max(nums[len(nums)-1], nums[len(nums)-2])
+}
+
+func rob1982602162(nums []int) int {
+	ns, s := 0, nums[0]
+	for i := 1; i < len(nums); i++ {
+		ns, s = max(ns, s), ns+nums[i]
+	}
+	return max(ns, s)
+}
