@@ -54,3 +54,29 @@ func findAnagrams(s string, p string) []int {
 //    }
 //    return
 //}
+
+func findAnagrams260217(s string, p string) []int {
+	if len(s) < len(p) {
+		return []int{}
+	}
+	lp := [26]int{}
+	for _, c := range p {
+		lp[int(c-'a')] += 1
+	}
+	sp := [26]int{}
+	for i := 0; i < len(p); i++ {
+		sp[int(s[i]-'a')] += 1
+	}
+	ans := []int{}
+	if lp == sp {
+		ans = append(ans, 0)
+	}
+	for i := 1; i <= len(s)-len(p); i++ {
+		sp[int(s[i-1]-'a')] -= 1
+		sp[int(s[i+len(p)-1]-'a')] += 1
+		if sp == lp {
+			ans = append(ans, i)
+		}
+	}
+	return ans
+}
