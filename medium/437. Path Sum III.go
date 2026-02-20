@@ -1,6 +1,6 @@
 package medium
 
-type TreeNode struct {
+type TreeNode437 struct {
 	Val   int
 	Left  *TreeNode
 	Right *TreeNode
@@ -32,5 +32,31 @@ func check(root *TreeNode, target int, dp []int, deepth int) int {
 	for i := deepth; i >= 0; i-- {
 		dp[i] = dp[i] - root.Val
 	}
+	return ans
+}
+
+func pathSum260219(root *TreeNode, targetSum int) int {
+	if root == nil {
+		return 0
+	}
+	dict := map[int]int{0: 1}
+	ans := 0
+	curr := 0
+	var dfs func(node *TreeNode)
+	dfs = func(node *TreeNode) {
+		curr += node.Val
+		ans += dict[curr-targetSum]
+		dict[curr] += 1
+		// fmt.Println(curr, dict, ans)
+		if node.Left != nil {
+			dfs(node.Left)
+		}
+		if node.Right != nil {
+			dfs(node.Right)
+		}
+		dict[curr] -= 1
+		curr -= node.Val
+	}
+	dfs(root)
 	return ans
 }
