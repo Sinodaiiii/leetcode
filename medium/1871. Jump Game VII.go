@@ -6,7 +6,6 @@ func canReach260525(s string, minJump int, maxJump int) bool {
 	visited[n-1] = true
 	pivot := n - 1
 	for i := n - 1; i >= 0; i-- {
-		// fmt.Println(i, pivot)
 		if visited[i] && s[i] == '0' && pivot >= 0 {
 			for pivot > i-minJump && pivot >= 0 {
 				pivot -= 1
@@ -16,7 +15,6 @@ func canReach260525(s string, minJump int, maxJump int) bool {
 				pivot -= 1
 			}
 		}
-		// fmt.Println(i, pivot, visited)
 	}
 	return visited[0]
 }
